@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://11s2sep8kxmv"]
+
+[ext_resource type="Script" uid="uid://cf2idtgqtr34d" path="res://net/server/server_setup.gd" id="1_3lj25"]
+[ext_resource type="Script" uid="uid://bu11i4lugxfh" path="res://net/server/server_handler.gd" id="2_tpvw1"]
+[ext_resource type="Script" uid="uid://8l36yg5o232k" path="res://scripts/World.gd" id="3_gpbqu"]
+[ext_resource type="Script" uid="uid://u75p8ijk8et0" path="res://scripts/PlayerSpawner.gd" id="3_tpvw1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_io8um"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_io8um"]
+albedo_color = Color(0.12591085, 0.12591085, 0.12591082, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kqs1s"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[node name="Server" type="Node"]
+
+[node name="ServerSetup" type="Node" parent="."]
+script = ExtResource("1_3lj25")
+
+[node name="ServerHandler" type="Node" parent="."]
+script = ExtResource("2_tpvw1")
+
+[node name="World" type="Node3D" parent="."]
+script = ExtResource("3_gpbqu")
+
+[node name="ServerCamera" type="Camera3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 0.8579663, 0.51370597, 0, -0.51370597, 0.8579663, 0, 6.020689, 15.407282)
+
+[node name="TestObject" type="Node3D" parent="World"]
+
+[node name="Floor" type="Node3D" parent="World"]
+
+[node name="Mesh" type="MeshInstance3D" parent="World/Floor"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_io8um")
+surface_material_override/0 = SubResource("StandardMaterial3D_io8um")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Floor/StaticBody3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_kqs1s")
+
+[node name="PlayerSpawner" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.295446, 0)
+script = ExtResource("3_tpvw1")
