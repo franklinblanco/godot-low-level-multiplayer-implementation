@@ -10,13 +10,14 @@ config_version=5
 
 [application]
 
-config/name="trial"
-run/main_scene="uid://ccqwggcqkcps8"
+config/name="trial_rewrite"
+run/main_scene="uid://db8uoaqan568m"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-ClientSetup="*res://net/client/client_setup.gd"
-ClientNetworkGlobals="*res://net/client/client_network_globals.gd"
-LaunchArgsHandler="*res://net/launch_args_handler.gd"
+ServerSignals="*res://scripts/net/server/server_signals.gd"
+ClientSignals="*res://scripts/net/client/client_signals.gd"
+CommonTypesEncoding="*res://scripts/net/shared/utils/common_types_encoding.gd"
+CommonTypesDecoding="*res://scripts/net/shared/utils/common_types_decoding.gd"

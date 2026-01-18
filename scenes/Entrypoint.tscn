@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://db8uoaqan568m"]
+
+[ext_resource type="Script" uid="uid://c50bu0jw3dwgh" path="res://scenes/example.gd" id="1_w7hfi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8ss2g"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w7hfi"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="Entrypoint" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_w7hfi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("BoxMesh_8ss2g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("ConvexPolygonShape3D_w7hfi")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6362958)
