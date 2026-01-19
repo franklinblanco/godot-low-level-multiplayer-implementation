@@ -1,7 +1,7 @@
 class_name Server extends Node
 
-var available_peer_ids: Array = range(255, -1, -1)
 var client_peers: Dictionary[int, ENetPacketPeer]
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 # General Variables
 var connection: ENetConnection
@@ -32,7 +32,7 @@ func handle_events() -> void:
 		event_type = packet_event[0]
 
 func client_connected(peer: ENetPacketPeer) -> void:
-	var peer_id: int = available_peer_ids.pop_back()
+	var peer_id: int = generate_random_id()
 	peer.set_meta("id", peer_id)
 	client_peers[peer_id] = peer
 	
@@ -41,7 +41,6 @@ func client_connected(peer: ENetPacketPeer) -> void:
 	
 func client_disconnected(peer: ENetPacketPeer) -> void:
 	var peer_id: int = peer.get_meta("id")
-	available_peer_ids.push_back(peer_id)
 	client_peers.erase(peer_id)
 	
 	ServerLogger.debug("Successfully disconnected: ", peer_id, " from server")
@@ -56,3 +55,9 @@ func start_server(ip_address: String = "127.0.0.1", port: int = 42069) -> void:
 		return
 	ServerSignals.on_server_started.emit()
 	ServerLogger.debug("Server started")
+
+func generate_random_id() -> int:
+	var generated = rng.randi_range(0, 255)
+	while generated in client_peers.keys():
+		generated = rng.randi_range(0, 255)
+	return generated

@@ -10,9 +10,9 @@ func _ready() -> void:
 	ClientSignals.on_disconnected_to_server.connect(handle_disconnected_to_server)
 	ClientSignals.on_id_assignment_packet.connect(handle_id_assignment)
 
-func handle_connected_to_server(_id: int) -> void:
+func handle_connected_to_server() -> void:
 	pass
-func handle_disconnected_to_server(_id: int) -> void:
+func handle_disconnected_to_server() -> void:
 	pass
 
 func handle_id_assignment(packet: IDAssignment) -> void:
