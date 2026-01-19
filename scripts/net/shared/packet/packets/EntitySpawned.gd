@@ -1,7 +1,7 @@
 class_name EntitySpawned extends Packet
 
 # Paket type := 1 byte
-var id: int # 1 byte
+var entity_id: int # 1 byte
 var timestamp: float # Float (8) = 8 bytes
 
 const BYTE_ARRAY_SIZE: int = 58 # Size of the array to represent this packet
@@ -12,8 +12,6 @@ static func create(id: int, origin: Vector3, basis: Basis) -> EntityTransformUpd
 	packet.packet_type = PACKET_TYPE.ENTITY_TRANSFORM_UPDATE
 	packet.flag = ENetPacketPeer.FLAG_RELIABLE
 	packet.id = id
-	packet.origin = origin
-	packet.basis = basis
 	packet.timestamp = Time.get_unix_time_from_system()
 	return packet
 

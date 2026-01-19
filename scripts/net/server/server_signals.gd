@@ -11,5 +11,5 @@ signal on_entity_transform_update_packet(client_id: int, packet: EntityTransform
 signal on_entity_spawned_packet(client_id: int, packet: EntitySpawned)
 
 # Server to world signals
-signal on_spawn_player(client_id: int)
-signal on_despawn_player(client_id: int)
+signal on_spawn_entity(client_id: int)
+signal on_despawn_entity(client_id: int)

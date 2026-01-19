@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://do54rvaoee6p"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n7flt"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_n0q6u"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[node name="TestWorld" type="Node3D"]
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_n7flt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_n0q6u")
+
+[node name="EntitySpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2803345, 0, 0)
+
+[node name="EntitySpawner3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.150344, 0, 0)
+
+[node name="EntitySpawner2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2803345, 0, -5.485465)

@@ -7,4 +7,5 @@ func create(entity_id: int, entity_name: String, client_id: int) -> Player:
 	player.entity_id = entity_id
 	player.entity_name = entity_name
 	player.client_id = client_id
+	scene = preload("res://scenes/entities/Player.tscn")
 	return player

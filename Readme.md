@@ -48,8 +48,3 @@ I also don't like that packets get sent from random places in the code. Like, th
 I must invent or improve a different way to achieve the same outcome. Probably rewrite this whole thing into a very neatly organized structure, with almost the same implementations for server and client, and then have all my signals defined in a global singleton autoloaded. Same for the global variables.
 
 ![Test](images/running-correctly.png)
-
-### The rewrite
-- [ ] Autoload Single file containing all the neccessary signals only
-- [ ] Standarize a way to network
-- [ ] 
