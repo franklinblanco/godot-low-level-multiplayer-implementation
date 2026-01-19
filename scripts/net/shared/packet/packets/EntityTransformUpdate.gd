@@ -28,11 +28,16 @@ func encode() -> PackedByteArray:
 	data.resize(BYTE_ARRAY_SIZE)
 	data.encode_u8(1, id)
 	var new_pos: int = CommonTypesEncoding.encode_vec3(data, 2, origin)
-	CommonTypesEncoding.encode_basis(data, new_pos, basis)
+	new_pos = CommonTypesEncoding.encode_basis(data, new_pos, basis)
+	data.encode_double(new_pos, timestamp)
 	return data
 
 func decode(data: PackedByteArray) -> void:
 	super.decode(data)
 	id = data.decode_u8(1)
-	origin = CommonTypesDecoding.decode_vec3(data, 2)
-	basis = CommonTypesDecoding.decode_basis(data, 2 + CommonTypesDecoding.VEC3_SIZE)
+	var new_pos: int = 2
+	origin = CommonTypesDecoding.decode_vec3(data, new_pos)
+	new_pos += CommonTypesDecoding.VEC3_SIZE
+	basis = CommonTypesDecoding.decode_basis(data, new_pos)
+	new_pos += CommonTypesDecoding.VEC3_SIZE * 3
+	timestamp = data.decode_double(new_pos)

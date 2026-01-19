@@ -36,7 +36,7 @@ func client_connected(peer: ENetPacketPeer) -> void:
 	peer.set_meta("id", peer_id)
 	client_peers[peer_id] = peer
 	
-	print_debug("Peer connected with assigned id: ", peer_id)
+	ServerLogger.debug("Peer connected with assigned id: ", peer_id)
 	ServerSignals.on_client_connected.emit(peer_id)
 	
 func client_disconnected(peer: ENetPacketPeer) -> void:
@@ -44,7 +44,7 @@ func client_disconnected(peer: ENetPacketPeer) -> void:
 	available_peer_ids.push_back(peer_id)
 	client_peers.erase(peer_id)
 	
-	print_debug("Successfully disconnected: ", peer_id, " from server")
+	ServerLogger.debug("Successfully disconnected: ", peer_id, " from server")
 	ServerSignals.on_client_disconnected.emit(peer_id)
 
 func start_server(ip_address: String = "127.0.0.1", port: int = 42069) -> void:
@@ -55,4 +55,4 @@ func start_server(ip_address: String = "127.0.0.1", port: int = 42069) -> void:
 		connection = null
 		return
 	ServerSignals.on_server_started.emit()
-	print_debug("Server started")
+	ServerLogger.debug("Server started")

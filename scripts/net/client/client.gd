@@ -2,6 +2,10 @@ class_name Client extends Node
 
 var server_peer: ENetPacketPeer
 var connection: ENetConnection
+var id: int
+
+func _ready() -> void:
+	start_client()
 
 func _process(_delta: float) -> void:
 	if connection == null: return
@@ -30,11 +34,11 @@ func disconnect_client() -> void:
 	server_peer.peer_disconnect()
 
 func connected_to_server() -> void:
-	print_debug("Successfully connected to server!")
+	ClientLogger.debug("Successfully connected to server!")
 	ClientSignals.on_connected_to_server.emit()
 
 func disconnected_from_server() -> void:
-	print_debug("Successfully disconnected from server!")
+	ClientLogger.debug("Successfully disconnected from server!")
 	ClientSignals.on_disconnected_to_server.emit()
 	connection = null
 
@@ -45,6 +49,6 @@ func start_client(ip_address: String = "127.0.0.1", port: int = 42069) -> void:
 		push_error("Client starting failed: ", error_string(error))
 		connection = null
 		return
-	print_debug("Client started")
+	ClientLogger.debug("Client started")
 	server_peer = connection.connect_to_host(ip_address, port)
 	

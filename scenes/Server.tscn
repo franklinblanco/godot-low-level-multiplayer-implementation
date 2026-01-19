@@ -1,14 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://ct4vl4gx1u3fk"]
+[gd_scene load_steps=6 format=3 uid="uid://ct4vl4gx1u3fk"]
 
 [ext_resource type="Script" uid="uid://cbgip847uavgl" path="res://scripts/net/server/server.gd" id="1_r1sct"]
-[ext_resource type="Script" uid="uid://bbugyt8xv0tqf" path="res://scripts/net/server/server_entity_transform_handler.gd" id="2_3lj25"]
+[ext_resource type="Script" uid="uid://bbugyt8xv0tqf" path="res://scripts/net/server/handlers/server_entity_transform_handler.gd" id="2_3lj25"]
+[ext_resource type="Script" uid="uid://vcpfxkhnhiag" path="res://scripts/net/server/server_packet_emitter.gd" id="2_tpvw1"]
+[ext_resource type="Script" uid="uid://bltno5rfajv28" path="res://scripts/world/World.gd" id="4_gpbqu"]
+[ext_resource type="Script" uid="uid://cqxi52ki822ph" path="res://scripts/net/server/handlers/server_connection_handler.gd" id="4_x7erg"]
 
 [node name="ServerScene" type="Node"]
 
 [node name="Server" type="Node" parent="."]
 script = ExtResource("1_r1sct")
 
+[node name="ServerPacketEmitter" type="Node" parent="."]
+script = ExtResource("2_tpvw1")
+
 [node name="EntityTransformHandler" type="Node" parent="."]
 script = ExtResource("2_3lj25")
 
-[node name="WorldParent" type="Node" parent="."]
+[node name="ServerConnectionHandler" type="Node" parent="."]
+script = ExtResource("4_x7erg")
+
+[node name="WorldParent" type="Node3D" parent="."]
+script = ExtResource("4_gpbqu")

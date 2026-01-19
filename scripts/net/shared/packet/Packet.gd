@@ -2,7 +2,9 @@
 
 enum PACKET_TYPE {
 	ID_ASSIGNMENT = 0,
-	ENTITY_TRANSFORM_UPDATE = 10,
+	# Entity related
+	ENTITY_SPAWNED = 10,
+	ENTITY_TRANSFORM_UPDATE = 11,
 }
 
 var packet_type: PACKET_TYPE

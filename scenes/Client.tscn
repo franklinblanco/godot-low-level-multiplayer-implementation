@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://pdwbwabwr26o"]
+[gd_scene load_steps=5 format=3 uid="uid://pdwbwabwr26o"]
 
 [ext_resource type="Script" uid="uid://cut6iwcuk2rtk" path="res://scripts/net/client/client.gd" id="1_qpk1v"]
+[ext_resource type="Script" uid="uid://capilrii14ac6" path="res://scripts/net/client/handler/client_connection_handler.gd" id="2_0nfpi"]
+[ext_resource type="Script" uid="uid://d1hek4weobhji" path="res://scripts/net/client/client_packet_emitter.gd" id="3_5s7ti"]
+[ext_resource type="Script" uid="uid://bltno5rfajv28" path="res://scripts/world/World.gd" id="3_tsrfd"]
 
-[node name="Client" type="Node"]
+[node name="ClientScene" type="Node"]
+
+[node name="Client" type="Node" parent="."]
 script = ExtResource("1_qpk1v")
+
+[node name="ClientConnectionHandler" type="Node" parent="."]
+script = ExtResource("2_0nfpi")
+
+[node name="ClientPacketEmitter" type="Node" parent="."]
+script = ExtResource("3_5s7ti")
+
+[node name="Node2" type="Node" parent="."]
+
+[node name="WorldParent" type="Node3D" parent="."]
+script = ExtResource("3_tsrfd")
