@@ -8,7 +8,7 @@ const BYTE_ARRAY_SIZE: int = 9 # Size of the array to represent this packet (bef
 
 static func create(entity: Entity) -> EntitySpawned:
 	var packet: EntitySpawned = EntitySpawned.new()
-	packet.packet_type = PACKET_TYPE.ENTITY_TRANSFORM_UPDATE
+	packet.packet_type = PACKET_TYPE.ENTITY_SPAWNED
 	packet.flag = ENetPacketPeer.FLAG_RELIABLE
 	packet.entity = entity
 	packet.timestamp = Time.get_unix_time_from_system()

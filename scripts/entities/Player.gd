@@ -24,3 +24,4 @@ static func decode(data: PackedByteArray, entity: Entity) -> void:
 		return
 	super.decode(data, entity)
 	entity.client_id = data.decode_u8(data.size() - 1)
+	entity.scene = player_scene

@@ -8,8 +8,8 @@ signal on_server_packet_received(data: PackedByteArray)
 
 # Packet signals
 signal on_id_assignment_packet(packet: IDAssignment)
-signal on_entity_transform_update_packet(client_id: int, packet: EntityTransformUpdate)
-signal on_entity_spawned_packet(client_id: int, packet: EntitySpawned)
+signal on_entity_transform_update_packet(packet: EntityTransformUpdate)
+signal on_entity_spawned_packet(packet: EntitySpawned)
 
 # Server to world signals
 signal on_spawn_player(client_id: int)
