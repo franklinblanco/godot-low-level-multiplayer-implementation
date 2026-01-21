@@ -4,8 +4,7 @@ class_name World extends Node3D
 var entities: Array[Entity] = []
 
 func _ready() -> void:
-	pass
-	#world_parent = get_child(0)
+	world_parent = get_child(0)
 
 func find_entity_with_entity_id(entity_id: int) -> Entity:
 	for child in world_parent.get_children():
@@ -33,5 +32,6 @@ func spawn_entity(entity: Entity) -> void:
 	spawned_entity.entity_id = entity.entity_id
 	spawned_entity.entity_name = entity.name
 	spawned_entity.entity_type = entity.entity_type
+	spawned_entity.position = spawner.position
 	world_parent.add_child(spawned_entity)
 	entities.append(entity)

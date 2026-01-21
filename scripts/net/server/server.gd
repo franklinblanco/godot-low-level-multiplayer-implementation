@@ -1,7 +1,6 @@
 class_name Server extends Node
 
 var client_peers: Dictionary[int, ENetPacketPeer]
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 # General Variables
 var connection: ENetConnection
@@ -57,7 +56,7 @@ func start_server(ip_address: String = "127.0.0.1", port: int = 42069) -> void:
 	ServerLogger.debug("Server started")
 
 func generate_random_id() -> int:
-	var generated = rng.randi_range(0, 255)
+	var generated = RNG.generate_random_id()
 	while generated in client_peers.keys():
-		generated = rng.randi_range(0, 255)
+		generated = RNG.generate_random_id()
 	return generated

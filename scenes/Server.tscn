@@ -16,7 +16,7 @@ script = ExtResource("1_r1sct")
 [node name="ServerPacketEmitter" type="Node" parent="."]
 script = ExtResource("2_tpvw1")
 
-[node name="EntityTransformHandler" type="Node" parent="."]
+[node name="ServerEntityTransformHandler" type="Node" parent="."]
 script = ExtResource("2_3lj25")
 
 [node name="ServerConnectionHandler" type="Node" parent="."]
@@ -30,3 +30,6 @@ script = ExtResource("4_gpbqu")
 world_parent = NodePath("TestWorld")
 
 [node name="TestWorld" parent="WorldParent" instance=ExtResource("6_4xhai")]
+
+[node name="ServerCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.80495596, 0.5933346, 0, -0.5933346, 0.80495596, 0, 3.5736666, 11.7729025)

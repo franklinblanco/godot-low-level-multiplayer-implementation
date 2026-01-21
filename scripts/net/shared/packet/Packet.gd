@@ -17,7 +17,7 @@ func encode() -> PackedByteArray:
 	return data
 
 func decode(data: PackedByteArray) -> void:
-	packet_type = data.decode_u8(0)
+	packet_type = data.decode_u8(0) as Packet.PACKET_TYPE
 
 func send(target: ENetPacketPeer) -> void:
 	target.send(0, encode(), flag)
