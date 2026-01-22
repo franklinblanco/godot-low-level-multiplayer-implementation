@@ -1,6 +1,6 @@
 class_name Player extends Entity
 
-var client_id: int
+var client_id: int = -1
 static var player_scene = preload("res://scenes/entities/Player.tscn")
 
 static func create(entity_id: int, entity_name: String, client_id: int) -> Player:
@@ -25,3 +25,10 @@ static func decode(data: PackedByteArray, entity: Entity) -> void:
 	super.decode(data, entity)
 	entity.client_id = data.decode_u8(data.size() - 1)
 	entity.scene = player_scene
+
+func copy(other: Entity) -> void:
+	super.copy(other)
+	if other is not Player: 
+		push_error("Player copy function did not get an entity of type player.")
+		return
+	other.client_id = client_id

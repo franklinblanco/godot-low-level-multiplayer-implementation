@@ -37,3 +37,9 @@ func take_control_of_entity(entity_id: int) -> void:
 			child.enabled = is_current
 		if child is Camera3D:
 			child.current = is_current
+
+func copy(other: Entity) -> void:
+	other.entity_id = entity_id
+	other.entity_name = entity_name
+	other.entity_type = entity_type
+	other.scene = scene
