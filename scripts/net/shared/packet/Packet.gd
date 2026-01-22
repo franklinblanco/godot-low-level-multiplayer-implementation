@@ -8,16 +8,19 @@ enum PACKET_TYPE {
 }
 
 var packet_type: PACKET_TYPE
-var flag: int
+var flag: int = ENetPacketPeer.FLAG_UNSEQUENCED
+var timestamp: float # 8 bytes
 
 func encode() -> PackedByteArray:
 	var data: PackedByteArray
-	data.resize(1)
+	data.resize(9)
 	data.encode_u8(0, packet_type)
+	data.encode_double(1, timestamp)
 	return data
 
 func decode(data: PackedByteArray) -> void:
 	packet_type = data.decode_u8(0) as Packet.PACKET_TYPE
+	timestamp = data.decode_double(1)
 
 func send(target: ENetPacketPeer) -> void:
 	target.send(0, encode(), flag)

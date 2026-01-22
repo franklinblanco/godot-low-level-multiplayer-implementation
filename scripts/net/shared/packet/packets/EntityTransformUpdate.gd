@@ -4,18 +4,17 @@ class_name EntityTransformUpdate extends Packet
 var entity_id: int # 1 byte
 var origin: Vector3 # 3 x PhysicsFloat (4) = 12 bytes
 var basis: Basis # 3 x Vector3 (12) = 36 bytes
-var timestamp: float # Float (8) = 8 bytes
 
 const BYTE_ARRAY_SIZE: int = 58 # Size of the array to represent this packet
 
 static func create(entity_id: int, origin: Vector3, basis: Basis) -> EntityTransformUpdate:
 	var packet: EntityTransformUpdate = EntityTransformUpdate.new()
+	packet.timestamp = Time.get_unix_time_from_system()
 	packet.packet_type = PACKET_TYPE.ENTITY_TRANSFORM_UPDATE
 	packet.flag = ENetPacketPeer.FLAG_UNSEQUENCED
 	packet.entity_id = entity_id
 	packet.origin = origin
 	packet.basis = basis
-	packet.timestamp = Time.get_unix_time_from_system()
 	return packet
 
 static func create_from_data(data: PackedByteArray) -> EntityTransformUpdate:
@@ -29,7 +28,6 @@ func encode() -> PackedByteArray:
 	data.encode_u8(1, entity_id)
 	var new_pos: int = CommonTypesEncoding.encode_vec3(data, 2, origin)
 	new_pos = CommonTypesEncoding.encode_basis(data, new_pos, basis)
-	data.encode_double(new_pos, timestamp)
 	return data
 
 func decode(data: PackedByteArray) -> void:
@@ -40,4 +38,3 @@ func decode(data: PackedByteArray) -> void:
 	new_pos += CommonTypesDecoding.VEC3_SIZE
 	basis = CommonTypesDecoding.decode_basis(data, new_pos)
 	new_pos += CommonTypesDecoding.VEC3_SIZE * 3
-	timestamp = data.decode_double(new_pos)
