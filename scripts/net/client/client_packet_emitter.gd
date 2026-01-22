@@ -14,6 +14,6 @@ func process_incoming_packet(data: PackedByteArray) -> void:
 			ClientSignals.on_entity_spawned_packet.emit(packet)
 		Packet.PACKET_TYPE.ENTITY_TRANSFORM_UPDATE:
 			var packet = EntityTransformUpdate.create_from_data(data)
-			ClientSignals.on_entity_transform_update_packet.emit(packet)
+			ClientSignals.on_entity_transform_update_packet.emit(true, packet)
 		_:
 			push_error("Packet type with index: ", packet_type, " unhandled!")

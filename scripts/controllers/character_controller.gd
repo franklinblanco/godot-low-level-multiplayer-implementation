@@ -22,7 +22,7 @@ func _physics_process(_delta: float) -> void:
 	player.velocity = Vector3(new_velocity.x, 0.0, new_velocity.y)
 	player.move_and_slide()
 	if player.velocity != Vector3.ZERO:
-		ClientSignals.on_entity_transform_update_packet.emit(EntityTransformUpdate.create(player.entity_id, player.global_position, player.global_basis))
+		ClientSignals.on_entity_transform_update_packet.emit(false, EntityTransformUpdate.create(player.entity_id, player.global_position, player.global_basis))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
